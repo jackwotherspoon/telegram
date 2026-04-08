@@ -34,8 +34,8 @@ jobs:
           sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" gemini-extension.json
 
       - name: Create TAR archive
-        # We include node_modules and dist so the extension is ready-to-run
-        run: tar -cvzf telegram.tar.gz --exclude='.git' --exclude='.github' .
+        # Create tar in parent dir then move it back to avoid self-inclusion error
+        run: tar -cvzf ../telegram.tar.gz --exclude='.git' --exclude='.github' . && mv ../telegram.tar.gz .
   
       - name: Create GitHub Release and Upload Asset
         env:
