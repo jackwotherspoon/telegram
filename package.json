@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "npx tsx server.ts"
+    "build": "tsc",
+    "postinstall": "npm run build",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.23.0",

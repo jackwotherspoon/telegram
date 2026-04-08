@@ -4,8 +4,8 @@
   "description": "Telegram channel for Gemini CLI — messaging bridge with access control",
   "mcpServers": {
     "telegram": {
-      "command": "npx",
-      "args": ["tsx", "${extensionPath}${/}server.ts"],
+      "command": "node",
+      "args": ["${extensionPath}${/}dist${/}server.js"],
       "cwd": "${extensionPath}",
       "env": {
         "TELEGRAM_BOT_TOKEN": "${TELEGRAM_BOT_TOKEN}"
