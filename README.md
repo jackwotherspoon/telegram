@@ -17,13 +17,7 @@ Open Telegram, DM [@BotFather](https://t.me/BotFather), and send `/newbot`. Foll
 gemini extensions install https://github.com/jackwotherspoon/telegram
 ```
 
-### 3. Configure the token
-
-```bash
-gemini extensions configure telegram
-```
-
-You will be prompted for your token:
+You will be prompted for your bot token during installation:
 
 ```
 ? Telegram Bot Token
@@ -31,8 +25,7 @@ Bot token from @BotFather on Telegram ›
 ```
 
 Paste your bot token. It's stored securely in your system keychain.
-
-### 4. Start Gemini CLI with the channel enabled
+### 3. Start Gemini CLI with the channel enabled
 
 ```bash
 gemini --channels telegram
@@ -40,12 +33,11 @@ gemini --channels telegram
 
 The bot starts polling automatically. You should see `» Channels listening for messages: telegram` in the Gemini CLI session.
 
-### 5. Verify status
+### 4. Verify status
 
 Inside Gemini CLI, you can run `/channels` to see all active message channels and their status.
 
-### 6. Pair yourself
-
+### 5. Pair yourself
 DM your bot on Telegram. It replies with a 6-character pairing code:
 
 ```
@@ -56,7 +48,7 @@ Pairing required — ask the user in Gemini CLI to run:
 
 Run that command in Gemini CLI. The bot confirms on Telegram: **"Paired! Say hi to Gemini."**
 
-### 7. Send a message
+### 6. Send a message
 
 DM the bot again. Your message appears in the Gemini CLI session and the assistant responds through the bot.
 
