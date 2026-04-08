@@ -1,0 +1,48 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run build
+        run: npm run build
+
+      - name: Update extension version
+        run: |
+          VERSION=$(echo ${{ github.ref_name }} | sed 's/v//')
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" gemini-extension.json
+
+      - name: Create TAR archive
+        # We include node_modules and dist so the extension is ready-to-run
+        run: tar -cvzf telegram.tar.gz --exclude='.git' --exclude='.github' .
+  
+      - name: Create GitHub Release and Upload Asset
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ github.ref_name }} \
+             --generate-notes \
+             --title "Release ${{ github.ref_name }}" \
+             --notes "To install this version: \`gemini extensions install https://github.com/jackwotherspoon/telegram/releases/download/${{ github.ref_name }}/telegram.tar.gz\`" \
+             telegram.tar.gz
