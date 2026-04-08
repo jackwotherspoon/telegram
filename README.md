@@ -23,7 +23,14 @@ gemini extensions install https://github.com/jackwotherspoon/telegram
 gemini extensions configure telegram
 ```
 
-Paste your bot token when prompted. It's stored in your system keychain.
+You will be prompted for your token:
+
+```
+? Telegram Bot Token
+Bot token from @BotFather on Telegram ›
+```
+
+Paste your bot token. It's stored securely in your system keychain.
 
 ### 4. Start Gemini CLI with the channel enabled
 
