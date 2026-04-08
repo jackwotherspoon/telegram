@@ -14,7 +14,7 @@ Open Telegram, DM [@BotFather](https://t.me/BotFather), and send `/newbot`. Foll
 ### 2. Install the extension
 
 ```bash
-gemini extensions install /path/to/telegram
+gemini extensions install https://github.com/jackwotherspoon/telegram
 ```
 
 ### 3. Configure the token
@@ -25,17 +25,17 @@ gemini extensions configure telegram
 
 Paste your bot token when prompted. It's stored in your system keychain.
 
-### 4. Enable channels
-
-In Gemini CLI, run `/settings` and set **channels** to `true`. This requires a restart.
-
-### 5. Start Gemini CLI
+### 4. Start Gemini CLI with the channel enabled
 
 ```bash
-gemini
+gemini --channels telegram
 ```
 
-The bot starts polling automatically. You should see `telegram channel: polling as @yourbotname` in the MCP server logs.
+The bot starts polling automatically. You should see `» Channels listening for messages: telegram` in the Gemini CLI session.
+
+### 5. Verify status
+
+Inside Gemini CLI, you can run `/channels` to see all active message channels and their status.
 
 ### 6. Pair yourself
 
@@ -172,13 +172,13 @@ Fine-tune delivery behavior with `/telegram-access set <key> <value>`:
 ## Troubleshooting
 
 **Bot doesn't respond to DMs**
-- Check that `channels` is set to `true` in `/settings`.
+- Check that you started Gemini with `--channels telegram`.
 - Verify the token is configured: `/telegram-configure status`.
 - Check MCP server status — the telegram server should show as connected.
 
 **Messages don't appear in Gemini CLI**
 - Confirm the sender is on the allowlist or that the DM policy is `pairing`.
-- Check that `channels: true` is set — without it, notifications are ignored.
+- Check that the channel is active by running `/channels` in Gemini CLI.
 
 **Pairing code not working**
 - Codes expire after 10 minutes. Ask the user to DM the bot again for a fresh code.
